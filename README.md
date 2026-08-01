@@ -303,16 +303,3 @@ Temporary `.state` and frontier files are deleted afterward unless
 `--keep-temp` is used.
 
 Before trusting a resumed run, verify all SHA-256 sidecars.
-```
-
----
-
-## Important implementation notes
-
-1. **Capture loops are handled correctly.** The moving piece is removed from its original square during recursion, so it may later land there again. Captured pieces remain occupied and block rays until the move is complete.
-
-2. **The retrograde graph contains only same-material, non-capture quiet edges.** Captures are lower-piece dependencies; promotions are higher-king dependencies. This is what makes exact material slices independently solvable in the documented order.
-
-3. **The exhaustive Kingsrow test is intentionally opt-in.** Exact five-piece 10×10 enumeration is far too large for normal unit-test execution.
-
-4. **For proof-tree use**, run the unit, smoke, SHA, and Kingsrow tests on the exact compiler/build configuration used to produce the distributed files.
